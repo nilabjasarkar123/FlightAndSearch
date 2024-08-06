@@ -1,14 +1,17 @@
 const express = require("express");
 // require('dotenv').config()
-const {PORT} = require('./config/serverConfig')
+const { PORT } = require("./config/serverConfig");
+const bodyParser = require("body-parser");
 const setupAndStartServer = async () => {
-    // create the express object
-    const app = express();
-    const PORT = 3000; 
+  // create the express object
+  const app = express();
 
-    app.listen(PORT, () => {
-        console.log(`server started at ${PORT}`)
-    })
-}
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.listen(PORT, () => {
+    console.log(`server started at ${PORT}`);
+  });
+};
 
 setupAndStartServer();
